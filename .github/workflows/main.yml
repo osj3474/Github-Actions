@@ -21,8 +21,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - uses: Build project
-      	run: ./gradlew build
+      - name: Build project
+        run: ./gradlew build
       
       - name: Deploy to Heroku
         # You may pin to the exact commit or the version.
