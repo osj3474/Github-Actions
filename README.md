@@ -2,9 +2,15 @@
 
 저비용으로 CI/CD를 해보자!
 
+Github Actions with
 
+- Heroku
+- Netlify
+- 
 
-### 1. Actions + Heroku
+<br /><br />
+
+## 1. Heroku
 
 1. https://start.spring.io/ 에서 다음과 같이 세팅해서 열어준다. (혹은 개인 프로젝트)
 
@@ -14,7 +20,7 @@
      <img src='https://user-images.githubusercontent.com/42775225/143015314-bd1251dc-e5b3-4bdb-abb4-7a3f932882a4.png'> </img>
    </div>
 
-   
+   <br /><br />
 
 2. Heroku 공식 홈페이지의 가이드를 따라간다. 
 
@@ -41,11 +47,15 @@
 
    - gradlew를 사용한다면, /gradle/wrapper 폴더는 gitignore로 빼버리면 안된다.
 
+   <br /><br />
+
 
 
 3. heroku 회원가입을 하고 앱을 만들자.
 
    https://dashboard.heroku.com/apps 에서 new로 만들 수 있다.
+
+   <br /><br />
 
    
 
