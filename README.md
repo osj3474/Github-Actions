@@ -24,8 +24,11 @@
 
      내용은
 
+     - [빌드명] 은 위에서 정한 것
+     - [version] 은 build.gradle에 version이다.
+
      ```
-     web: java -Dserver.port=$PORT $JAVA_OPTS -jar build/libs/[빌드명]-0.0.1-SNAPSHOT.jar
+     web: java -Dserver.port=$PORT $JAVA_OPTS -jar build/libs/[빌드명]-[version].jar
      ```
 
    - system.properties 파일 만들기 (필수는 아님)
@@ -40,7 +43,13 @@
 
 
 
-3. 이제 레포지토리에 Actions탭 > 'set up a workflow yourself'를 선택하자.
+3. heroku 회원가입을 하고 앱을 만들자.
+
+   https://dashboard.heroku.com/apps 에서 new로 만들 수 있다.
+
+   
+
+4. 이제 레포지토리에 Actions탭 > 'set up a workflow yourself'를 선택하자.
 
    (이미 만든적 있다면 New workflow)
 
@@ -57,13 +66,13 @@
    
    jobs:
      build:
-       runs-on: ubuntu-latest
+       runs-on: ubuntu-latest    # 돌릴 OS
        
        steps:
          - uses: actions/checkout@v2
          
-         - uses: Build project
-         	run: ./gradlew build
+   #      - name: Build project    # 로컬에서 build해서 확인하고 배포할 것이기 때문에 이건 굳이 필요는 없음 
+   #        run: ./gradlew build
      
          - name: Deploy to Heroku
            uses: AkhileshNS/heroku-deploy@v3.12.12
@@ -78,4 +87,10 @@
    - heroku_app_name
 
    값만 넣으면 되는데, 이거는 Settings탭 > Secrets에서 값을 숨겨서 변수로 사용하자.
+
+   (api_key는 Account Settings의 맨 밑에 있다.)
+
+
+
+
 
