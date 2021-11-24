@@ -5,8 +5,10 @@
 Github Actions with
 
 - Heroku
-- Netlify
-- 
+
+- Netlify => 이 친구는 정적 사이트용
+
+  
 
 <br /><br />
 
