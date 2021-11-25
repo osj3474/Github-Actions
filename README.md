@@ -104,5 +104,12 @@ Github Actions with
 
 
 
+<br /><br />
 
 
+
+## 대체제) Jenkins
+
+https://github.com/jenkinsci/jenkins
+
+https://jojoldu.tistory.com/139
