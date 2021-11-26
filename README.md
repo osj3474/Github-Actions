@@ -113,3 +113,34 @@ Github Actions with
 https://github.com/jenkinsci/jenkins
 
 https://jojoldu.tistory.com/139
+
+
+
+#### 서버 설치
+
+1. Jenkins 서버 설치
+
+   https://hub.docker.com/_/jenkins 에 들어간다. (Docker)
+
+
+
+#### 로컬 설치
+
+1. Jenkins 로컬 호스트 설치
+
+   https://www.jenkins.io/download/ 에서 각자 OS에 맞는거 설치한다.
+
+   ```shell
+   brew install jenkins
+   ```
+
+2. 
+
+
+
+
+
+
+
+
+
