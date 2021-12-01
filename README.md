@@ -10,7 +10,7 @@ Github Actions with
 
 - CodeDeploy + EC2
 
-- Jenkins  => 너무 비싸진 않나...
+- Jenkins  => 너무 비싸지 않나...
 
   
 
