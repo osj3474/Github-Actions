@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 env:
-  PROJECT_NAME: action_codedeploy
+  PROJECT_NAME: CDapp
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
