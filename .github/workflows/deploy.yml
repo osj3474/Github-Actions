@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: github actions + heroku
+name: github actions + codedeploy
 
 on:
   push:
@@ -39,4 +39,4 @@ jobs:
         run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://sangjin-deploy/$PROJECT_NAME/$GITHUB_SHA.zip
 
       - name: Code Deploy
-        run: aws deploy create-deployment --application-name CDapp --deployment-config-name CodeDeployDefault.OneAtATime --deployment-group-name CDapp --s3-location bucket=sangjin-deploy,bundleType=zip,key=$PROJECT_NAME/$GITHUB_SHA.zip
+        run: aws deploy create-deployment --application-name CDapp --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name CDapp --s3-location bucket=sangjin-deploy,bundleType=zip,key=$PROJECT_NAME/$GITHUB_SHA.zip
