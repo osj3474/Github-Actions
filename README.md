@@ -210,6 +210,124 @@ http://[서버IP]:9000/admin/v1/events/2021/7 로
 
 
 
+
+
+**\< 사용법 >**
+
+<a href="https://isntyet.github.io/deploy/github-action%EA%B3%BC-aws-code-deploy%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%98%EC%97%AC-spring-boot-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0(1)/" target="_blank">JaeYoung 님 블로그</a> 를 참고하여 작성하였습니다.
+
+
+
+1. EC2에 ruby설치 후 code-deploy agent를 설치
+
+   ```shell
+   sudo apt-get update
+   sudo apt-get install ruby
+   sudo apt-get install wget
+   cd /home/ubuntu
+   
+   wget https://`bucket-name`.s3.`region-identifier`.amazonaws.com/latest/install
+   chmod +x ./install
+   sudo ./install auto
+   ```
+
+   bucket-name과 region-identifier은 
+
+   <a href="https://docs.aws.amazon.com/ko_kr/codedeploy/latest/userguide/resource-kit.html#resource-kit-bucket-names" target="_blank">AWS 공식 문서</a>를 기준으로 설정하되 저는 다음과 같습니다.
+
+   ```shell
+   wget https://aws-codedeploy-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/latest/install
+   ```
+
+   (참고로, 현재 EC2에는 jvm과 mysql이 설치되어 있어서 자바 어플리케이션이 실행가능한 상태에서 시작하였습니다.)
+
+
+
+2. AWS 세팅
+   - EC2 IAM 설정
+   - CodeDeploy 어플리케이션 생성 및 IAM 설정
+   - S3 생성
+   - 사용자 생성 (accessKey, secretKey 필요) 
+
+
+
+3. EC2 배포스크립트 작성
+
+   프로젝트 루트 경로에
+
+   - appspec.yml
+
+     ```yaml
+     
+     ```
+
+   - deploy.sh
+
+     ```shell
+     
+     ```
+
+
+
+4. .github/workflows에서 yml 생성
+
+   ```yaml
+   # This is a basic workflow to help you get started with Actions
+   
+   name: github actions + heroku
+   
+   on:
+     push:
+       branches: [ main ]
+   
+     # Allows you to run this workflow manually from the Actions tab
+     workflow_dispatch:
+   
+   env:
+     PROJECT_NAME: CDapp
+   
+   # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+   jobs:
+     # This workflow contains a single job called "build"
+     build:
+       # The type of runner that the job will run on
+       runs-on: ubuntu-latest
+   
+       # Steps represent a sequence of tasks that will be executed as part of the job
+       steps:
+         # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+         - uses: actions/checkout@v2
+   
+         - name: Make zip file
+           run: zip -qq -r ./$GITHUB_SHA.zip .   # GITHUB_SHA는 예약변수로, 커밋 해시값
+           shell: bash
+   
+         - name: Configure AWS credentials
+           uses: aws-actions/configure-aws-credentials@v1
+           with:
+             aws-access-key-id: ${{ secrets.accessKey }}
+             aws-secret-access-key: ${{ secrets.secretKey }}
+             aws-region: ${{ secrets.region }}
+   
+         - name: Upload to S3
+           run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://sangjin-deploy/$PROJECT_NAME/$GITHUB_SHA.zip
+   
+         - name: Code Deploy
+           run: aws deploy create-deployment --application-name CDapp --deployment-config-name CodeDeployDefault.OneAtATime --deployment-group-name CDapp --s3-location bucket=sangjin-deploy,bundleType=zip,key=$PROJECT_NAME/$GITHUB_SHA.zip
+   ```
+
+   
+
+
+
+
+
+
+
+
+
+
+
 <br /><br />
 
 
