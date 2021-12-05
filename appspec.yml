@@ -3,9 +3,9 @@ os: linux
 
 files:
   - source: /
-    destination: /home/ubuntu
+    destination: /home/ubuntu/sangjin-deploy
 permissions:
-  - object: /home/ubuntu/sangjin-deploy
+  - object: /home/ubuntu/sangjin-deploy/
     owner: ubuntu
     group: ubuntu
 hooks:
