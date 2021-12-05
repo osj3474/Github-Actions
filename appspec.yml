@@ -3,14 +3,4 @@ os: linux
 
 files:
   - source: /
-    destination: /home/ubuntu
-permissions:
-  - object: /home/ubuntu
-    owner: ubuntu
-    group: ubuntu
-hooks:
-  ApplicationStart:
-    # location은 프로젝트의 root경로를 기준
-    - location: deploy.sh
-      timeout: 60
-      runas: ubuntu
+    destination: /home/ubuntu/build/
