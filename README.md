@@ -251,6 +251,8 @@ http://[서버IP]:9000/admin/v1/events/2021/7 로
 
 
 
+
+
 3. EC2 배포스크립트 작성
 
    프로젝트 루트 경로에
@@ -258,12 +260,50 @@ http://[서버IP]:9000/admin/v1/events/2021/7 로
    - appspec.yml
 
      ```yaml
+     version: 0.0
+     os: linux
+     
+     files:
+       - source: /
+         destination: /home/ubuntu/sangjin-deploy
+     permissions:
+       - object: /home/ubuntu/sangjin-deploy/
+         owner: ubuntu
+         group: ubuntu
+     hooks:
+       AfterInstall:
+         - location: scripts/deploy.sh
+           timeout: 60
+           runas: ubuntu
      
      ```
 
    - deploy.sh
 
      ```shell
+     #!/usr/bin/env bash
+     
+     REPOSITORY=/home/ubuntu/sangjin-deploy
+     cd $REPOSITORY
+     
+     APP_NAME=actions
+     JAR_NAME=$(ls $REPOSITORY/build/libs/ | grep 'SNAPSHOT.jar' | tail -n 1)
+     JAR_PATH=$REPOSITORY/build/libs/$JAR_NAME
+     
+     CURRENT_PID=$(pgrep -f $APP_NAME)
+     
+     if [ -z $CURRENT_PID ]
+     then
+       echo "> 종료할것 없음."
+     else
+       echo "> kill -9 $CURRENT_PID"
+       kill -15 $CURRENT_PID
+       sleep 5
+     fi
+     
+     echo "> $JAR_PATH 배포"
+     nohup java -jar $JAR_PATH > /dev/null 2> /dev/null < /dev/null &
+     
      
      ```
 
@@ -318,9 +358,11 @@ http://[서버IP]:9000/admin/v1/events/2021/7 로
 
    
 
+5. 성공 ⭐️
 
+   <br />
 
-
+   ![image](https://user-images.githubusercontent.com/42775225/144769049-09ba47a0-abf0-4e57-b477-f69ec0654b22.png)
 
 
 
