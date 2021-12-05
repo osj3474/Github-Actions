@@ -5,7 +5,7 @@ files:
   - source: /
     destination: /home/ubuntu
 permissions:
-  - object: /home/ec2-user/cicdproject/
+  - object: /home/ubuntu/
     owner: ubuntu
     group: ubuntu
 hooks:
