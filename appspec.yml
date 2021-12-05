@@ -3,4 +3,13 @@ os: linux
 
 files:
   - source: /
-    destination: /home/ubuntu/build/
+    destination: /home/ubuntu
+permissions:
+  - object: /home/ec2-user/cicdproject/
+    owner: ubuntu
+    group: ubuntu
+hooks:
+  AfterInstall:
+    - location: scripts/deploy.sh
+      timeout: 60
+      runas: ubuntu
