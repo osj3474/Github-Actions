@@ -137,3 +137,19 @@ STEP 3. API 몇번 호출해보고 평균 응답 ms 기록
 
    ![image](https://user-images.githubusercontent.com/42775225/145210435-d7a2bfec-24b0-4dd5-8810-8cb04653e2fc.png)
 
+
+
+
+
+cf) heroku 참고
+
+```shell
+$ heroku login
+
+$ heroku git:remote -a sangjin-test
+
+$ git add .
+$ git commit -am "make it better"
+$ git push heroku master
+```
+
