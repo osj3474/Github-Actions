@@ -21,7 +21,7 @@ STEP 2. ec2-micro 인스턴스 비용 정책 기록
 
    ```shell
    sudo apt-get -y update # 우분투 서버 업데이트
-   sudo apt-get -y install mysql-server # mysql-server 설치 (혹은 mariadb-server)
+   sudo apt-get -y install mysql.server # mysql-server 설치 (혹은 mariadb-server)
    sudo ufw allow mysql # 외부 접속 기능 설정 (포트 3306 오픈)
    sudo systemctl start mysql # MySQL 실행
    sudo systemctl enable mysql # Ubuntu 서버 재시작시 MySQL 자동 재시작
