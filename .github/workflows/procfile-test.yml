@@ -32,4 +32,4 @@ jobs:
           heroku_email: ${{ secrets.heroku_email }}
           # The appname to use for deploying/updating
           heroku_app_name: ${{ secrets.heroku_app_name }}
-          procfile: dev
+          procfile: prod
