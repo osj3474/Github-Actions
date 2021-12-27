@@ -4,7 +4,7 @@ name: procfile-test
 
 on:
   push:
-    branches: [ test ]
+    branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -32,3 +32,4 @@ jobs:
           heroku_email: ${{ secrets.heroku_email }}
           # The appname to use for deploying/updating
           heroku_app_name: ${{ secrets.heroku_app_name }}
+          procfile: dev
