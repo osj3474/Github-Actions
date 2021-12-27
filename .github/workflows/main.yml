@@ -14,7 +14,9 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: set Procfile
-        run: cp Proc/procfile-real Procfile
+        run: |
+          cp Proc/procfile-real Procfile
+          cat Procfile
 
       - name: Deploy to Heroku
         uses: AkhileshNS/heroku-deploy@v3.12.12
